@@ -1,0 +1,245 @@
+<!-- STEPS MENU -->
+{$stepsmenu}
+
+<!-- / STEPS MENU -->
+<div class="step-cont mt-2">
+	<div class="row">
+		<div class="col">
+			<div class="step-cont__titulo">
+				<h1>Detalhes</h1>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="row py-3">
+		<div class="col">
+			<div class="step-cont__datas">
+				<p>Criação: <span>25/05/2019</span></p>
+				<p>Ultima Aprovação: <span>25/05/2019</span></p>
+			</div>
+		</div>
+	</div> -->
+
+	<div id="view-details" class="row py-4">
+		<div class="col">
+			<!-- Menu original -->
+			{if="$prevregisters!=''"}
+			<div class="caminhos--pai pb-5">
+				<div class="caminhos__legenda">
+					<span>Menu Origem</span>
+
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+
+						<li>{function="quebraLinha('Menu original')"} </li>
+						<li>{function="quebraLinha('Localização original')"} </li>
+						<li>Nome </li>
+						<li>Criador</li>
+						<li>Data</li>
+
+					</ul>
+				</div>
+
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+
+						<li> {$prevregisters.original_menu} </li>
+						<li> {$prevregisters.original_local} </li>
+						<li> {$prevregisters.name} </li>
+						<li> {$prevregisters.username} </li>
+						<li> {$prevregisters.datePrev} </li>
+
+						<!-- <li class="caminhos__btn-alterar">
+							<a href="#">
+								<i class="fas fa-pen"></i>
+							</a>
+						</li> -->
+					</ul>
+
+				</div>
+			</div>
+
+			{/if}
+			<!-- / Menu original -->
+
+			<!-- Caminhos Principal -->
+			{if="$getListAllWay!=''"}
+			{loop="$getListAllWay"}
+			<div class="caminhos--pai pb-5">
+				<div class="caminhos__legenda">
+					<span>Local de guarda</span>
+
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+
+						{loop="$listAllOptions"}
+						<li>{function="quebraLinha($value.name)"} </li>
+
+						{/loop}
+						<li>Nome</li>
+
+					</ul>
+				</div>
+
+				<!-- ROW -->
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+						{loop="$value.val"}
+
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}
+						<li>{function="emptyData($value.name)"}</li>
+						<li class="caminhos__btn-alterar">
+							<a href="/mondo/index.php/admin/way/edit/{$value.id_way}">
+								<i class="fas fa-pen"></i>
+							</a>
+						</li>
+					</ul>
+					{if="$mmodify!=''"}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value.id_way}" data-typeelement="way"
+						data-location="/relatorio/claro/{$mmodify}/way" data-target="#modalDeletElement">Exluir</a>
+					{else}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value.id_way}" data-typeelement="way" data-location="/claro/way/relatorio"
+						data-target="#modalDeletElement">Exluir</a>
+					{/if}
+
+				</div>
+				<!-- / ROW -->
+			</div>
+			<!-- / Caminhos Principal -->
+
+			{if="$value.pageseconds!=''"}
+
+			<!--  Paginas secundarias  -->
+			<div class="caminhos--sub pb-5">
+				<div class="caminhos__legenda">
+					<span>Paginas Secudarias - &quot;{$value.name}&quot;</span>
+
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+
+						{loop="$listAllOptions"}
+						<li>{function="quebraLinha($value.name)"} </li>
+
+						{/loop}
+						<li>Nome</li>
+
+					</ul>
+				</div>
+
+				{loop="$value.pageseconds"}
+				<!-- ROW -->
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+						{loop="$value['0'].val"}
+
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}
+						<li>{function="emptyData($value['0'].name)"}</li>
+
+						<li class="caminhos__btn-alterar">
+							<a href="/mondo/index.php/admin/way/edit/pageseconds/{$value['0'].id_sec}">
+								<i class="fas fa-pen"></i>
+							</a>
+						</li>
+					</ul>
+					{if="$mmodify!=''"}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value['0'].id_sec}" data-typeelement="pageseconds"
+						data-location="/relatorio/claro/{$mmodify}/way" data-target="#modalDeletElement">Exluir</a>
+					{else}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value['0'].id_sec}" data-typeelement="pageseconds"
+						data-location="/claro/way/relatorio" data-target="#modalDeletElement">Exluir</a>
+					{/if}
+
+				</div>
+				<!-- / ROW -->
+
+				{/loop}
+			</div>
+			<!--  / Paginas secundarias  -->
+			{/if}
+
+
+			{if="$value.links!=''"}
+
+			<!--  Paginas secundarias  -->
+			<div class="caminhos--sub pb-5">
+				<div class="caminhos__legenda">
+					<span>Menus - &quot;{$value.name}&quot;</span>
+
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+
+						{loop="$listAllOptions"}
+						<li>{function="quebraLinha($value.name)"} </li>
+
+						{/loop}
+						<li>Nome</li>
+
+					</ul>
+				</div>
+
+				{loop="$value.links"}
+				<!-- ROW -->
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+						{loop="$value['0'].val"}
+
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}
+						<li>{function="emptyData($value['0'].namelink)"}</li>
+
+						<li class="caminhos__btn-alterar">
+							<a href="/mondo/index.php/admin/way/edit/links/{$value['0'].id_link}">
+								<i class="fas fa-pen"></i>
+							</a>
+						</li>
+					</ul>
+					{if="$mmodify!=''"}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value['0'].id_link}" data-typeelement="links"
+						data-location="/relatorio/claro/{$mmodify}/way" data-target="#modalDeletElement">Exluir</a>
+					{else}
+					<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal"
+						data-idelement="{$value['0'].id_link}" data-typeelement="links"
+						data-location="/claro/way/relatorio" data-target="#modalDeletElement">Exluir</a>
+					{/if}
+
+				</div>
+				<!-- / ROW -->
+				{/loop}
+			</div>
+			<!--  / Paginas secundarias  -->
+			{/if}
+
+
+
+			{/loop}
+
+			{/if}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col center-column py-5">
+			<div class="btn-cont">
+				<button class="btn-default bg-cancel mx-3" type="button" onclick="window.print()">Exportar PDF</button>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,46 @@
+
+.tooltip-inner p
+{
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 10px !important; 
+}
+
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 30px
+  ;
+  margin-left:10px ;
+}
+
+#message p {
+  padding: 0px 20px;
+  font-size: 13px;
+  color: #343a40 !important;
+
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -10px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -10px;
+  content: "✖";
+}

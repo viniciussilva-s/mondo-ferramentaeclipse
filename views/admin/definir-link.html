@@ -1,0 +1,185 @@
+
+
+<!-- STEPS MENU -->
+{$stepsmenu}
+
+<!-- / STEPS MENU -->
+
+<div class="step-cont mt-2">
+	<div class="row">
+		<div class="col">
+			<!-- <div class="step-cont__atual pt-3 pb-2">
+				4. Definir Links
+			</div> -->
+			<div class="step-cont__titulo">
+				<h1>Definir menus</h1>
+			</div>
+		</div>
+	</div>
+	{function="getInformation_record()"}
+
+
+	<div class="row py-4">
+		<div class="col">
+			<!-- Caminho Pai -->
+			{if="$way!=''"}
+			<div class="caminhos--pai pb-5">
+				<div class="caminhos__legenda">
+					<span>Local de guarda</span>
+					<hr>
+				</div>			
+				<div class="caminhos__col-titulo">
+					<ul>
+						{loop="$listAllOptions"}
+
+						<li>{function="quebraLinha($value.name)"} </li>
+						{/loop}     
+						<li>Nome</li>
+					</ul>
+				</div>
+				<div class="caminhos__row m-0">
+					<ul class="caminhos__info">
+						{loop="$way"} 
+						{loop="$value.val"}
+
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}                   
+						<li>{function="emptyData($value.name)"}</li>
+						<!-- <li>{$value.name}</li> -->
+						
+						<li class="caminhos__btn-alterar">
+							<!-- <a  href="/desv/desenUserLogin/index.php/admin/way/{$value.id_way}/edit" >
+								<i class="fas fa-pen"></i>
+							</a> -->
+						</li>	
+						{/loop}
+					</ul>
+				</div>
+
+
+
+			</div>
+			{/if}
+			<!-- / Caminho Pai -->
+
+			{if="$dataLinks!=''"}
+
+			<!-- Páginas Secundárias / Links -->
+			<div class="caminhos--sub pb-5">
+				<div class="caminhos__legenda">
+					<span>Menus</span>
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+						{loop="$listAllOptions"}
+						<li>{function="quebraLinha($value.name)"} </li>
+						
+						{/loop}     
+						<li>Nome</li>
+					</ul>
+				</div>
+				{loop="$dataLinks"}
+				<!-- ROW -->
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+
+
+						{loop="$value.val"}
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}
+						<li>{$value.namelink}</li>
+						<li class="caminhos__btn-alterar">
+							<!-- <a href="#">
+								<i class="fas fa-pen"></i>
+							</a> -->
+						</li>
+					</ul>
+					{if="$id_way!=''"}
+
+						<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal" data-idelement="{$value.id_link}" data-typeelement="links" data-location="/way/claro/{$id_way}/links"
+						data-target="#modalDeletElement">Exluir</a>
+					{else}
+						<a class="caminhos__btn-vizualizar bg-cancel px-5 classdeletElement" data-toggle="modal" data-idelement="{$value.id_link}" data-typeelement="links" data-location="/way/none/links"
+						data-target="#modalDeletElement">Exluir</a>
+					{/if}
+				</div>
+				<!-- / ROW -->
+				{/loop}
+
+				{if="$id_way!=''"}
+
+
+			<form  method="post" 	action="http://catalogoclaro.comercial.ws/mondo/index.php/admin/way/claro/duplicate/{$id_way}/links">
+				{else}
+				<form  method="post" 	action="http://catalogoclaro.comercial.ws/mondo/index.php/admin/way/duplicate/none/links">
+					{/if}
+
+					{function="getMenuAlternativesDisabled($way)"}
+					<!-- {function="getMenuAlternativesDisabledLinks($dataLinks)"} -->
+
+					<div class="row py-5">
+						<div class="col">
+							<div class="input-block">
+								<div class="input-block__cont">
+									<div class="input-block__text-input">
+										<label for="name">Nome</label>
+										<input type="text" id="name" name="name" placeholder="Pagamento da Fatura">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  -->
+
+					<div class="row">
+						<div class="col center-column py-5">
+							<div class="btn-cont">
+								<button class="btn-default bg-cancel mr-3" type="submit">Criar Link</button>
+								<button class="btn-default bg-confirm" type="button">Resumir Decisão</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				{else}
+				{if="$id_way!=''"}
+				
+
+			<form  method="post" 	action="http://catalogoclaro.comercial.ws/mondo/index.php/admin/way/claro/{$id_way}/links">
+				{else}
+				<form  method="post" action="http://catalogoclaro.comercial.ws/mondo/index.php/admin/way/none/links">
+					{/if}
+
+				{function="getMenuAlternativesDisabled($way)"}
+					<!-- {function="getMenuAlternatives()"} -->
+
+					<div class="row py-5">
+						<div class="col">
+							<div class="input-block">
+								<div class="input-block__cont">
+									<div class="input-block__text-input">
+										<label for="name">Nome</label>
+										<input type="text" id="name" name="name" placeholder="Pagamento da Fatura">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  -->
+
+					<div class="row">
+						<div class="col center-column py-5">
+							<div class="btn-cont">
+								<button class="btn-default bg-cancel mr-3" type="submit">Criar Link</button>
+								<button class="btn-default bg-confirm" type="button">Resumir Decisão</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				{/if}
+			</div>
+			<!-- / Páginas Secundárias / Links -->
+		</div>
+	</div>
+</div>

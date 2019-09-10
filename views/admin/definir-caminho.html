@@ -1,0 +1,180 @@
+<!-- STEPS MENU -->
+
+{$stepsmenu}
+
+
+<!-- / STEPS MENU -->
+
+<div class="step-cont mt-2">
+	<div class="row">
+		<div class="col">
+			<!-- <div class="step-cont__atual pt-3 pb-2">
+					2. Definir Caminho
+				</div> -->
+			<div class="step-cont__titulo">
+				<h1>Definir local de guarda</h1>
+			</div>
+		</div>
+	</div>
+	{function="getInformation_record()"}
+
+
+	<div class="row py-4">
+		<div class="col">
+			<!-- Caminhos Principal -->
+			{if="$way!=''"}
+			<div class="caminhos--principal pb-5">
+				<div class="caminhos__legenda">
+					<span>Locais de guarda já criados </span>
+					<hr>
+				</div>
+
+				<div class="caminhos__col-titulo">
+					<ul>
+						{loop="$listAllOptions"}
+						<li>{$value.name}</li>
+
+						{/loop}
+						<li>Nome</li>
+
+					</ul>
+				</div>
+
+
+				{loop="$way"}
+
+				<!-- ROW -->
+				<div class="caminhos__row ">
+					<ul class="caminhos__info">
+						{loop="$value.val"}
+
+						<li>{function="emptyData($value.name)"}</li>
+						{/loop}
+						<li>{function="emptyData($value.name)"}</li>
+
+						<li class="caminhos__btn-alterar">
+							<!-- <a href="#">
+									<i class="fas fa-pen"></i>
+								</a> -->
+						</li>
+					</ul>
+
+
+					<a class="bg-cancel z-1" href="/mondo/index.php/admin/claro/way/{$value.id_way}/pageseconds">Páginas
+						Secundárias</a>
+
+
+					<a class="bg-confirm" href="/mondo/index.php/admin/way/claro/{$value.id_way}/links">Menus</a>
+				</div>
+				<!-- / ROW -->
+
+				{/loop}
+
+				<!-- <div class="caminhos__row">
+					<ul class="caminhos__info">
+
+						<li>Claro</li>
+						<li>Claro</li>
+						<li>Claro</li>
+						<li data-toggle="tooltip" data-placement="top" title="Tooltip on top">Assunto Geral</li>
+						<li>Claro</li>
+						<li>Assunto Especifico</li>
+						<li>Claro</li>
+
+						<li class="caminhos__btn-alterar">
+						</li>
+					</ul>
+
+
+					<a class="bg-cancel z-1" href="/mondo/index.php/admin/claro/way/{$value.id_way}/pageseconds">Páginas
+						Secundárias</a>
+
+
+					<a class="bg-confirm" href="/mondo/index.php/admin/way/claro/{$value.id_way}/links">Menus</a>
+				</div> -->
+
+				<form id="idform" method="post" action="/mondo/index.php/admin/{$mmodify}/duplicate">
+
+					{function="getMenuAlternativesDisabled($way)"}
+					<div class="row py-5">
+						<div class="col">
+							<div class="input-block">
+								<div class="input-block__cont">
+									<div class="input-block__text-input">
+										<label for="name">Nome</label>
+										<input type="text" id="name" name="name" placeholder="Pagamento da Fatura"
+											required="true">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col center-column py-5">
+							<p class="radio-message">Esse caminho possui <strong>página secundária?</strong></p>
+							<div class="radio-block pt-3 pb-4">
+								<div class="radio-group confirm">
+									<input type="radio" name="pageseconds" id="secPageSim" checked="true" value="1">
+									<label for="secPageSim">Sim</label>
+								</div>
+								<div class="radio-group cancel">
+									<input type="radio" name="pageseconds" id="secPageNao" value="0">
+									<label for="secPageNao">Não</label>
+								</div>
+							</div>
+							<div class="btn-cont py-3">
+								<button class="btn-default bg-confirm" type="submit">Criar Caminho</button>
+								<button class="btn-default bg-cancel mx-3" type="button">Definir Links</button>
+								<button class="btn-default bg-relatorio" type="button">Finalizar e Gerar Relatório</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			{else}
+			<!-- / Caminhos -->
+		</div>
+	</div>
+
+	<form id="idform" method="post" action="/mondo/index.php/admin/{$mmodify}/created-way">
+
+		{function="getMenuAlternatives()"}
+
+		<div class="row py-5">
+			<div class="col">
+				<div class="input-block">
+					<div class="input-block__cont">
+						<div class="input-block__text-input">
+							<label for="name">Nome</label>
+							<input type="text" id="name" name="name" placeholder="Pagamento da Fatura" required="true">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col center-column py-5">
+				<p class="radio-message">Esse caminho possui <strong>página secundária?</strong></p>
+				<div class="radio-block pt-3 pb-4">
+					<div class="radio-group confirm">
+						<input type="radio" name="pageseconds" id="secPageSim" checked="true" value="1">
+						<label for="secPageSim">Sim</label>
+					</div>
+					<div class="radio-group cancel">
+						<input type="radio" name="pageseconds" id="secPageNao" value="0">
+						<label for="secPageNao">Não</label>
+					</div>
+				</div>
+				<div class="btn-cont py-3">
+					<button class="btn-default bg-confirm" type="submit">Criar Caminho</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+	{/if}
+
+
+</div>

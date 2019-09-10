@@ -1,0 +1,138 @@
+            <div class="breadcrumbs">
+              <div class="col-sm-4">
+                <div class="page-header float-left">
+                  <div class="page-title">
+                    <h1>Lista de opções</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="page-header float-right">
+                  <div class="page-title">
+
+                    <ol class="breadcrumb text-right">
+                      <li><a href="/desv/desenUserLogin/index.php/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+                      <li class="active"><a href="/desv/desenUserLogin/index.php/admin/config-opt/user">Opções</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+             {function="getInformation_record()"}
+
+             <div class="card">
+
+              <div class="card-header">
+                <div class="row col-lg-12">
+                 <div class="col-lg-10 ">
+
+                   <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-sm">Cadastrar</button>
+                 </div>   
+
+
+                 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                     <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Nova opção</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/desv/desenUserLogin/index.php/admin/config-opt/claro" method="post" id="idform" >
+
+                        <div class="form-group">
+                          <label for="opts_registers" class="col-form-label">Titulo </label> {function="getSpanRequired()"}
+                          <input type="text" class="form-control" id="opts_registers" name="opts_registers" required="true">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-primary btn-submit">Enviar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 ">
+                <form action="/desv/desenUserLogin/index.php/admin/config-opt/claro" method="
+                POST">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="search" class="form-control pull-right" placeholder="Pesquisar" >
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>    
+        </div>
+
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Nome </th>
+                <th>Data </th>
+                <th>Ação</th>
+                <th>Viewer</th>
+              </tr>
+            </thead>
+            <tbody>
+             {if="$configuremenu==false"}
+             <td >- </td>
+             <td >Não encontrado </td>
+             <td > </td>
+             {else}
+             {loop="$configuremenu"}
+             <tr>
+              <th>{$value.id_option}</th>
+              <th class="fieldname-{$value.id_option}">{$value.name}</th>
+              <th>{$value.created}</th>
+              <th class="pr-0"> 
+                <button type="button" class="btn btn-primary modalbtnedit" data-toggle="modal" data-target=".bd-example-modal-sm2" data-id={$value.id_option} data-table='option' >Editar</button>
+                <a href="/desv/desenUserLogin/index.php/admin/config-opt/claro/delete/{$value.id_option}" onclick="return confirm('Deseja realmente excluir este registro?')" class=" button btn btn-danger" >Excluir</a>
+              </th>
+              <th><a href="#"><i class="fa fa-eye"></i></a></th>
+            </tr>
+            {/loop}
+            {/if}    
+          </tbody>
+        </table>
+
+        <div id="modaledit" class="modal fade bd-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-content">
+               <div class="modal-header">
+                <h5 class="modaledit-title" id="modaledit-id"> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form  method="post" class="modalformedit" >
+
+                  <input type="hidden" name="id_option" class="modalinput">
+
+                  <div class="form-group">
+                    <label for="opts_registers" class="col-form-label">Novo Titulo </label> {function="getSpanRequired()"}
+                    <input type="text" class="form-control" id="opts_registers" name="opts_registers" required="true">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary btn-submit">Enviar</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

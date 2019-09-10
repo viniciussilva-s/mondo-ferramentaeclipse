@@ -1,0 +1,187 @@
+
+			<div class="step-cont">
+				<div class="row mb-4 mt-5">
+					<div class="col">
+						<div class="step-cont__titulo">
+							<h1>Solicitações</h1>
+						</div>
+					</div>
+				</div>
+
+				<!-- Solicitações Pendentes -->
+				{if="$users_requests!=''"}
+				<div class="row py-4">
+					<div class="col-10 pr-3">
+						<div class="solicit solicit--pendente pb-5">
+							<div class="solicit__legenda">
+								<span>Pendentes</span>
+								<hr>
+							</div>
+
+							<div class="solicit__col-titulo">
+								<ul>
+									<li>Nome</li>
+									<li>E-mail</li>
+									<li>Nível</li>
+								</ul>
+							</div>
+							{loop="$users_requests"}
+							<!-- ROW -->
+							<div class="solicit__row ">
+								<ul class="solicit__info">
+									<li>{$value.username}</li>
+									<li>{$value.email}</li>
+									<li>{$value.namerole}</li>
+									
+								</ul>
+
+								<!-- data-toggle="modal" data-target="#modalAprovar"? -->
+								<a class="solicit__btn-aprovar bg-green" href="http://catalogoclaro.comercial.ws/mondo/index.php/admin/release/{$value.id_user}/access/onlyAdmin" data-userid={$value.id_user} >Aprovar Acesso</a>
+								<!-- http://localhost/desv/desenUserLogin/index.php/admin/release/userid/access -->
+
+							</div>
+							<!-- / ROW -->
+							{/loop}
+							
+						</div>
+					</div>
+				</div>
+				{/if}
+				<!-- / Solicitações Pendentes -->
+
+				<!-- Solicitações Aprovadas -->
+				{if="$users!=''"}
+
+				<div class="row py-4">
+					<div class="col-10 pr-3">
+						<div class="solicit solicit--aprovada pb-5">
+							<div class="solicit__legenda">
+								<span>Aprovadas</span>
+								<hr>
+							</div>
+
+							<div class="solicit__col-titulo">
+								<ul>
+									<li>Nome</li>
+									<li>E-mail</li>
+									<li>Nível</li>
+								</ul>
+							</div>
+	{loop="$users"}
+							<!-- ROW -->
+							<div class="solicit__row ">
+								<ul class="solicit__info">
+									<li>{$value.username}</li>
+									<li>{$value.email}</li>
+									<li>{$value.namerole}</li>
+								</ul>
+
+								<!-- admin/alter/userid/permission -->
+								<!-- data-toggle="modal" data-target="#modalPermissao" -->
+								<!-- <a class="solicit__btn-permissao bg-confirm" data-userid={$value.id_user} 
+									href="http://catalogoclaro.comercial.ws/mondo/index.php/admin/alter/{$value.id_user}/permission/onlyAdmin">Mudar Permissionamento</a> -->
+
+
+									<!-- /admin/reset/userid /password   -->
+									<!-- http://localhost/desv/desenUserLogin/index.php/admin/alter/userid/permission -->
+									<!-- data-toggle="modal" data-target="#modalResetSenha" -->
+								<a class="solicit__btn-reset bg-cancel" data-userid={$value.id_user} 
+									href="http://catalogoclaro.comercial.ws/mondo/index.php/admin/reset/{$value.id_user}/password/onlyAdmin 
+">Resetar Senha</a>
+							</div>
+							<!-- / ROW -->
+					{/loop}		
+						</div>
+					</div>
+				</div>
+				{/if}
+				<!-- / Solicitações Aprovadas -->
+
+			</div>
+		</div>
+	</main>
+
+	<!--  Modal Aprovar -->
+	<div class="modal fade" id="modalAprovar">
+		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+			<div class="modal-content">
+
+				<div class="content content--sucesso">
+					<img src="http://catalogoclaro.comercial.ws/mondo/res/assets/ar2/assets/images/verified.png"}>
+ 
+					<div class="content__header text-center py-5">
+						<h2>Sucesso</h2>
+						<p>Agora o Usuário Já tem acesso à ferramenta</p>
+						<a href="#" data-dismiss="modal"><i class="far fa-times"></i></a>
+					</div>
+					<button class="btn-default bg-cancel" type="button" data-dismiss="modal">Voltar para a página de
+						solicitações</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- / Modal Aprovar -->
+
+	<!--  Modal Permissão -->
+	<div class="modal fade" id="modalPermissao">
+		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+			<div class="modal-content">
+
+				<div class="content content--input">
+					<div class="content__header pb-2">
+						<h3>Mudar Permissão</h3>
+						<p>Selecione o nível de usuário do colaborador</p>
+						<a href="#" data-dismiss="modal"><i class="far fa-times"></i></a>
+					</div>
+					<div class="input-block w-100 pb-5 pt-4">
+						<div class="input-block__cont">
+							<select class="input-block__select-input" name="selectAlterPermission" id="selectAlterPermission">
+								<option selected value=""></option>
+								<option value="">Lorem Ipsum</option>
+								<option value="">Lorem Ipsum</option>
+							</select>
+						</div>
+					</div>
+					<div class="btn-cont px-4">
+						<button class="btn-default bg-cancel w-100" type="button" data-dismiss="modal">Mudar
+							Permissionamento</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- / Modal Permissão -->
+
+	<!--  Modal Resetar Senha -->
+	<div class="modal fade" id="modalResetSenha">
+		<div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+			<div class="modal-content">
+
+				<div class="content content--senha">
+					<div class="content__header pb-2">
+						<h3>Resetar Senha</h3>
+						<p>Essa é a nova <strong>senha provisória</strong> desse usuário:</p>
+						<a href="#" data-dismiss="modal"><i class="far fa-times"></i></a>
+					</div>
+					<div class="content__nova-senha w-100 pt-3 pb-4">Mudar123</div>
+					<div class="btn-cont">
+						<button class="btn-default bg-cancel w-100" type="button" data-dismiss="modal">Mudar
+							Permissionamento</button>
+					</div>
+				</div>
+
+				<!-- <div class="content content--sucesso">
+					<img src="./assets/images/verified.png">
+					<div class="content__header text-center py-5">
+						<h2>Sucesso</h2>
+						<p>A senha do Usuário ja foi resetada</p>
+						<a href="#" data-dismiss="modal"><i class="far fa-times"></i></a>
+					</div>
+					<button class="btn-default bg-cancel" type="button" data-dismiss="modal">Voltar para a Página de
+						Solicitações</button>
+				</div> -->
+
+			</div>
+		</div>
+	
